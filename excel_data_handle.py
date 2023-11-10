@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 plt.rcParams['font.family'] = 'Malgun Gothic'
 
-#주석 드래그후 ctrl+/ 로 범위주석제거가능합니다, 필요한 것들 주석제거해서 쓰시면 됩니다 수정 바라는부분 있으시면 카톡주세요
+#주석 드래그후 ctrl+/ 로 범위주석제거가능합니다, 필요한 것들 주석제거해서 쓰시면 됩니다 수정 필요한 부분 있으시면 카톡주세요
 
 data1 = pd.ExcelFile('C:/data/실습데이터/KSE_FIN_DATA_2023.xlsx')
 data1 = data1.parse(index_col=3)
