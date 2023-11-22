@@ -1,8 +1,8 @@
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 plt.rcParams['font.family'] = 'Malgun Gothic'
 
-#주석 드래그후 ctrl+/ 로 범위주석제거가능합니다, 필요한 것들 주석제거해서 쓰시면 됩니다 수정 필요한 부분 있으시면 카톡주세요
 
 data1 = pd.ExcelFile('C:/data/실습데이터/KSE_FIN_DATA_2023.xlsx')
 data1 = data1.parse(index_col=3)
@@ -71,22 +71,25 @@ data_high_sales = data_main.nlargest(10, '매출액증가율')  # 매출액증�
 data_high_op = data_main.nlargest(10, '영업이익증가율')  # 영업이익증가율 기준 상위 10개 dataframe
 
 # 데이터프레임에서 score열 제거
-# data_high_all.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
-# data_high_roe.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
-# data_high_roa.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
-# data_high_debt.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
-# data_high_capital.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
-# data_high_sales.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
-# data_high_op.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
+data_high_all.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
+data_high_roe.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
+data_high_roa.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
+data_high_debt.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
+data_high_capital.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
+data_high_sales.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
+data_high_op.drop(columns=['score_roe', 'score_roa', 'score_부채비율', 'score_자기자본비율', 'score_매출액증가율', 'score_영업이익증가율'], inplace=True)
+
+folder_dir1 = 'C:/data/실습데이터/데이터프레임/'
+os.makedirs(folder_dir1, exist_ok=True)
 
 # 2.엑셀로 저장, .xlsx파일 이전의 경로 수정해야함
-# data_high_all.to_excel("C:/data/실습데이터/데이터프레임/data_high_all.xlsx")
-# data_high_roe.to_excel("C:/data/실습데이터/데이터프레임/data_high_roe.xlsx")
-# data_high_roa.to_excel("C:/data/실습데이터/데이터프레임/data_high_roa.xlsx")
-# data_high_debt.to_excel("C:/data/실습데이터/데이터프레임/data_high_debt.xlsx")
-# data_high_capital.to_excel("C:/data/실습데이터/데이터프레임/data_high_capital.xlsx")
-# data_high_sales.to_excel("C:/data/실습데이터/데이터프레임/data_high_sales.xlsx")
-# data_high_op.to_excel("C:/data/실습데이터/데이터프레임/data_high_op.xlsx")
+# data_high_all.to_excel(folder_dir1 + "data_high_all.xlsx")
+# data_high_roe.to_excel(folder_dir1 + "data_high_roe.xlsx")
+# data_high_roa.to_excel(folder_dir1 + "data_high_roa.xlsx")
+# data_high_debt.to_excel(folder_dir1 + "data_high_debt.xlsx")
+# data_high_capital.to_excel(folder_dir1 + "data_high_capital.xlsx")
+# data_high_sales.to_excel(folder_dir1 + "data_high_sales.xlsx")
+# data_high_op.to_excel(folder_dir1 + "data_high_op.xlsx")
 
 data_high_all_name = list(data_high_all['Name'])
 data_high_roe_name = list(data_high_roe['Name'])
@@ -100,21 +103,25 @@ data_high_op_name = list(data_high_op['Name'])
 # 최근 1년데이터 추출, 경로 수정 필요
 data2 = pd.read_excel('C:/data/실습데이터/kSE수정종가.xlsx', index_col=0, skiprows=range(1, 5640))
 
+folder_dir2 = 'C:/data/실습데이터/주가/'
+os.makedirs(folder_dir2, exist_ok=True)
+data2.to_excel('C:/data/실습데이터/kSE수정종가_cut.xlsx')
+
 # 1.상위 10개 각각 분류마다 excel로 저장, .xlsx파일 이전의 경로 수정 필요
 # data_all_stock = data2.loc[:, data_high_all_name]
-# data_all_stock.to_excel("C:/data/실습데이터/주가/data_all_stock.xlsx")
+# data_all_stock.to_excel(folder_dir2 + "data_all_stock.xlsx")
 # data_roe_stock = data2.loc[:, data_high_roe_name]
-# data_roe_stock.to_excel("C:/data/실습데이터/주가/data_roe_stock.xlsx")
+# data_roe_stock.to_excel(folder_dir2 + "data_roe_stock.xlsx")
 # data_roa_stock = data2.loc[:, data_high_roa_name]
-# data_roa_stock.to_excel("C:/data/실습데이터/주가/data_roa_stock.xlsx")
+# data_roa_stock.to_excel(folder_dir2 + "data_roa_stock.xlsx")
 # data_debt_stock = data2.loc[:, data_high_debt_name]
-# data_debt_stock.to_excel("C:/data/실습데이터/주가/data_debt_stock.xlsx")
+# data_debt_stock.to_excel(folder_dir2 + "data_debt_stock.xlsx")
 # data_capital_stock = data2.loc[:, data_high_capital_name]
-# data_capital_stock.to_excel("C:/data/실습데이터/주가/data_capital_stock.xlsx")
+# data_capital_stock.to_excel(folder_dir2 + "data_capital_stock.xlsx")
 # data_sales_stock = data2.loc[:, data_high_sales_name]
-# data_sales_stock.to_excel("C:/data/실습데이터/주가/data_sales_stock.xlsx")
+# data_sales_stock.to_excel(folder_dir2 + "data_sales_stock.xlsx")
 # data_op_stock = data2.loc[:, data_high_op_name]
-# data_op_stock.to_excel("C:/data/실습데이터/주가/data_op_stock.xlsx")
+# data_op_stock.to_excel(folder_dir2 + "data_op_stock.xlsx")
 
 
 # 2.상위 10개순으로 plt에 그래프 추가
@@ -132,4 +139,4 @@ data2 = pd.read_excel('C:/data/실습데이터/kSE수정종가.xlsx', index_col=
 #     data2.plot.line(use_index=True, y=[data_high_sales_name[i]])
 # for i in range(len(data_high_op_name)):
 #     data2.plot.line(use_index=True, y=[data_high_op_name[i]])
-#plt.show()
+# plt.show()
